@@ -1,8 +1,13 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { NavLink, Routes, Route } from 'react-router-dom';
 import logo from '../../assets/logo.png';
 import Report from '../Reports';
-import { HomeSimple, Reports } from 'iconoir-react';
+import Vendors from '../Vendors';
+import { HomeSimple, Reports, Shop } from 'iconoir-react';
+
+const Home = () => {
+  return <>Hi</>;
+};
 
 const Dashboard = () => {
   return (
@@ -27,7 +32,7 @@ const Dashboard = () => {
             Home
           </NavLink>
           <NavLink
-            to="/reports"
+            to="reports"
             className={({ isActive }) =>
               (isActive ? 'text-blue-600 ' : 'text-gray-500 ') +
               'font-semibold text-sm py-2 flex items-center'
@@ -36,17 +41,23 @@ const Dashboard = () => {
             <Reports className="mx-3" height={18} />
             Reports
           </NavLink>
+          <NavLink
+            to="vendors"
+            className={({ isActive }) =>
+              (isActive ? 'text-blue-600 ' : 'text-gray-500 ') +
+              'font-semibold text-sm py-2 flex items-center'
+            }
+          >
+            <Shop className="mx-3" height={18} />
+            Vendors
+          </NavLink>
         </div>
       </div>
       <div className="w-4/5 h-full flex flex-col">
         <Routes>
-          <Route
-            to="/"
-            element={() => {
-              return <>Hi</>;
-            }}
-          />
-          <Route to="/reports" element={<Report />} />
+          <Route index element={<Home />} />
+          <Route path="reports" element={<Report />} />
+          <Route path="vendors" element={<Vendors />} />
         </Routes>
       </div>
     </div>
